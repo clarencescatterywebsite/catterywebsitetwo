@@ -1,0 +1,457 @@
+:root {
+  --bg: #d4e6d4;                /* Slightly darker background */
+  --header-footer: #2a4f2a;     /* Deeper green for header/footer */
+  --button-bg: #3d6b3d;         /* Darker green for buttons */
+  --button-hover: #325a32;      /* Slightly deeper on hover */
+  --text-color: #163016;        /* Darker text */
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: var(--bg);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+header {
+  background: var(--header-footer);
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+.tagline {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav button {
+  background: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 3px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+nav button:hover {
+  background: var(--button-hover);
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+video {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+form label {
+  font-weight: 600;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+form button[type="submit"] {
+  background: var(--button-bg);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background: var(--button-hover);
+}
+
+/* New gallery styles for dynamic gallery */
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.gallery-item {
+  max-width: 300px;
+  flex: 1 1 300px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item p {
+  margin-top: 8px;
+  font-style: italic;
+  text-align: center;
+  color: var(--text-color);
+}
+
+/* Accommodation Section */
+#accommodation {
+  background-color: #d8f3dc;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#accommodation h2 {
+  font-size: 2rem;
+  color: var(--header-footer);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.accommodation-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text-box {
+  background: #d6ead6; /* pastel green */
+  border: 2px solid var(--button-bg);
+  border-radius: 15px;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.06);
+  line-height: 1.5;
+  white-space: pre-line;
+  transition: background 0.3s ease;
+}
+
+.text-box:hover {
+  background: #c0d9c0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 2.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.photo-card:hover {
+  transform: scale(1.03);
+}
+
+.photo-card img {
+  width: 100%;
+  display: block;
+  border-bottom: none;  /* removed border */
+}
+
+.caption {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #e5f3e5;
+  color: var(--text-color);
+}
+
+/* Initial hidden state */
+.fade-init {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When appear class is added */
+.appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-card:hover {
+  transform: scale(1.05);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  border: none;  /* removed border */
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  animation-name: zoomIn;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoomIn {
+  from {transform: scale(0.7);}
+  to {transform: scale(1);}
+}
+
+.modal-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: #ddd;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  font-family: 'Comic Neue', cursive;
+}
+
+.page {
+  padding: 2rem;
+  font-family: 'Comic Neue', cursive;
+}
+
+.accommodation-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.text-box {
+  background-color: #fff;
+  border-left: 6px solid #95d5b2;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+.text-box p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.text-box ul {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.text-box li {
+  margin-bottom: 0.5rem;
+}
+
+/* Light green stays for all pages except home */
+.page {
+  background-color: #d8f3dc;
+}
+
+#home.page {
+  background-color: transparent;
+}
+
+/* Default green for all pages except home */
+.page {
+  background-color: #d8f3dc;
+}
+
+/* ===== HOME PAGE FULL BACKGROUND OVERRIDE ===== */
+body.home-page {
+  background: url("https://i.ibb.co/ZznFVDYJ/Untitled-design-1.png") no-repeat center center fixed !important;
+  background-size: cover !important;
+  background-color: transparent !important;
+  color: #fff;
+  position: relative;
+}
+
+/* Dark overlay for readability */
+body.home-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: -1;
+}
+
+/* Remove all green backgrounds inside Home */
+body.home-page .page,
+body.home-page #home.page,
+body.home-page section.page {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Make paw dividers transparent */
+body.home-page .paw-divider {
+  background-color: transparent !important;
+}
+
+/* ===== HOME PAGE BACKGROUND IMAGE ===== */
+body.home-page {
+  background: url("https://i.ibb.co/ZznFVDYJ/Untitled-design-1.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Optional: remove green backgrounds on home */
+body.home-page .page {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+/* Make home page a vertical flex layout */
+#home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Top text content stays at top */
+.home-top {
+  flex: 1;
+  color: #ffffff;
+}
+
+/* Bottom image block sticks to bottom */
+.home-bottom {
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
+.image-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.image-row img {
+  max-width: 100%;
+  border-radius: 10px;
+  border: none;  /* removed border */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.home-bottom img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Global reset to ensure no borders on any images */
+img {
+  border: none !important;
+}

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>clarences cattery 2.0</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🐾 Clarence's Cattery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="hNWxyB51Kkp-W_QR7xRjvVn6_8iYF2rzsWdoGFePIOg" />
+  <meta name="google-site-verification" content="wY53j-6SShT1_51XKWCaehtsecAU0aoA9EAMpRIYXvw" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* General styles */
+    body {
+      font-family: 'Comic Neue', cursive, sans-serif;
+      background-color: #29AB87;
+      color: #004225;
+      margin: 0;
+      padding: 0;
+    }
+    /* Make home top text white */
+    .home-top {
+      color: white;
+    }
+    header {
+      background-color: #a3c9a8;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+    .tagline {
+      font-style: italic;
+      margin-top: 0.2rem;
+      color: #1f4d3a;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav button {
+      background-color: #70a37f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      margin: 0.2rem 0.3rem;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    nav button:hover,
+    nav button:focus {
+      background-color: #5a875f;
+      outline: none;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section.page {
+      display: none;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    section.page.active {
+      display: block;
+    }
+    h2 {
+      font-weight: 700;
+      margin-top: 0;
+      color: #2f6f4e;
+      border-bottom: 3px solid #70a37f;
+      padding-bottom: 0.3rem;
+    }
+    p, ul {
+      font-weight: 700;
+      line-height: 1.5;
+      color: #3b6f4d;
+    }
+    ul {
+      padding-left: 1.3rem;
+    }
+    ul li::before {
+      content: "🐾 ";
+    }
+    /* Gallery styles */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .photo-card {
+      background: #b7d7b7;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 200px;
+      text-align: center;
+      font-weight: 700;
+      color: #2f6f4e;
+      transition: transform 0.2s ease;
+    }
+    .photo-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .photo-card img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+      height: 140px;
+    }
+    .caption {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1f4d3a;
+    }
+    /* Contact form */
+    form {
+      font-weight: 700;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 2px solid #70a37f;
+      border-radius: 8px;
+      font-family: 'Comic Neue', cursive, sans-serif;
+      font-weight: 700;
+      color: #2f6f4e;
+      box-sizing: border-box;
+      margin-top: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    button[type="submit"] {
+      background-color: #70a37f;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      background-color: #5a875f;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #a3c9a8;
+      color: #2f6f4e;
+      font-weight: 700;
+    }
+    /* Success message */
+    #successMessage {
+      background-color: #70a37f;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    #successMessage svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Clarence's Cattery 🐾</h1>
+    <p class="tagline">Family-run • Five-star awarded • Unique and Luxury care</p>
+    <nav>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('name')">What's in a Name?</button>
+      <button onclick="showPage('about')">About Me</button>
+      <button onclick="showPage('accommodation')">Accommodation</button>
+      <button onclick="showPage('prices')">Prices</button>
+      <button onclick="showPage('gallery')">Gallery</button>
+      <button onclick="showPage('video')">Video Tour</button>
+      <button 
+      <button onclick="window.open('https://www.facebook.com/profile.php?id=100063592359308&sk=reviews', '_blank')">Facebook Reviews</button>
+      <button onclick="window.open('https://www.google.com/maps/place/Clarence%E2%80%99s+Cattery+5+star+awarded/@51.8043103,-0.7822747,432m/data=!3m1!1e3!4m8!3m7!1s0x4876f7303083fd5d:0x766e437167e69c5b!8m2!3d51.804307!4d-0.7796998!9m1!1b1!16s%2Fg%2F11g_rm3vwz?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D', '_blank')">Google Reviews</button>
+      <button onclick="showPage('contact')">Contact us</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <!-- Top content -->
+      <div class="home-top">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <!-- your intro image if you have one -->
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.1em; font-weight: 500; line-height: 1.6;">
+          <p1>
+            Welcome! Clarence’s was made with love — a cozy home-from-home where pussycats can feel safe, happy and truly cared for! 💕  
+          </p1>
+  
+        </div>
+      </div>
+
+      <!-- Paw print divider -->
+      <div style="text-align: center; margin: 40px 0;">
+        <div style="font-size: 1.5em; letter-spacing: 0.2em;">
+          🐾 🐾 🐾 🐾 🐾🐾 🐾 🐾 🐾 🐾🐾 🐾 🐾 🐾 🐾
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom image section -->
+<!-- Change your .home-bottom section like this -->
+
+
+  <!-- Opening times bigger and on top -->
+  <div class="opening-times-container">
+    <img src="https://i.ibb.co/mVj24dZ4/Opening-Times-Monday-to-Saturday-9-30am-5-30pm-By-appointment-only-Closed-on-Sundays-and-Christmas-B.png" 
+         alt="Opening Times" class="opening-times-img">
+  </div>
+
+        <!-- Paw print divider -->
+      <div style="text-align: center; margin: 40px 0;">
+        <div style="font-size: 1.5em; letter-spacing: 0.2em;">
+          🐾 🐾 🐾 🐾 🐾🐾 🐾 🐾 🐾 🐾🐾 🐾 🐾 🐾 🐾
+        </div>
+      </div>
+  <!-- Map and address side by side smaller below -->
+    <div class="home-bottom">
+  <h3>📍 Where to Find Us</h3>
+
+  <div class="map-address-row">
+    <img src="https://i.ibb.co/x8SQLY2t/MAPMAP.png" alt="Map to Clarence's Cattery" class="small-img">
+    <img src="https://i.ibb.co/15ZpYJM/20-Pike-Corner-Bedgrove-Aylesbury-United-Kingdom-HP21-9-DL.png" alt="Address" class="small-img">
+  </div>
+
+  <p style="text-align:center; margin-top: 1rem;">
+    <a href="https://www.google.com/maps/place/Clarence%E2%80%99s+Cattery+5+star+awarded/" target="_blank">
+      🗺️ Open in Google Maps
+    </a>
+  </p>
+</div>
+
+<style>
+  .opening-times-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .opening-times-img {
+    max-width: 650px;
+    width: 90%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+
+  .map-address-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .small-img {
+    max-width: 200px;
+    width: 45%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 650px) {
+    .map-address-row {
+      flex-direction: column;
+      align-items: center;
+    }
+    .small-img {
+      width: 80%;
+      max-width: none;
+      margin-bottom: 1rem;
+    }
+    .opening-times-img {
+      max-width: 90vw;
+    }
+  }
+</style>
+<p1 style="font-weight: bold; margin-top: 5px;">Licence Number: LC201711-10954</p1>
+
+  </section>
+</main>
+
+
+
+
+ 
+
+ 
+
+   <section id="name" class="page">
+  <h2>💖 What’s in a Name?</h2>
+
+  <div class="accommodation-text">
+    <div class="text-box">
+      <p>🐱 Our Cattery is named after our handsome, gentle, caring boy Clarence. We sadly lost him in June 2016 at the very grand age of 24 years old. I was privileged to have had Clarence with me since he was 9 weeks old - rescued from a farm where he was neglected and mistreated.</p>
+    </div>
+
+    <div class="text-box">
+      <p>😼 As a kitten, he was extremely mischievous — climbing curtains, sitting on rooftops, fighting with my pigtails and even stealing a joint of beef from my next door neighbour’s kitchen worktop!!</p>
+    </div>
+
+    <div class="text-box">
+      <p>In his older years, he was a best friend to both of my children. They dressed him up, put make-up on him, talked to him, and most importantly, they loved him to pieces.</p>
+    </div>
+
+    <div class="text-box">
+      <p>🐾 Clarence was so loving, so affectionate, and his love unconditional... we all miss him terribly but were honoured to have him in our lives.</p>
+    </div>
+
+    <div class="text-box heart-photo">
+      <p>🖼️ Here's our beautiful boy Clarence:</p>
+      <div class="heart-image">
+        <!-- Replace src below with actual image path -->
+        <img src="clarence.jpg" alt="Clarence the cat" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+   <section id="about" class="page">
+  <h2>About Me!</h2>
+
+  <div class="accommodation-text">
+
+    <div class="text-box">
+      <p>👋 Hello, my name is Kerry AKA Auntie Kes. I created Clarence’s as I wanted to make a special, unique place for pussycats to experience a wonderful holiday. Somewhere they get to feel safe, have lots of fun, be mischievous, relax, have cuddles galore, be pampered and thoroughly loved. I understand that it can be initially unsettling for your baby to adjust to its new surroundings, equally unsettling for the owners to leave their much-loved family member for the first time. I wanted to provide a second home for our feline friends — whilst here, they are absolutely part of my family.</p>
+      <img src="https://imagizer.imageshack.com/img923/3565/buIswc.png" alt="Cat Holiday Image 1" style="width: 100%; max-width: 300px; display: block; margin: 1rem auto; border-radius: 10px;">
+    </div>
+
+    <div class="text-box">
+      <p>🐾 I have had cats for as long as I can remember and would never be without one. I have been blessed to have Ginny, Tawney, Joecat, Clarence, Dennis, Carlito, Humphrey, Dotty and Ralph in my life. Only one remains — my big Teddy Bear, Ralphie. Although the others have all passed on, they are still loved and will never be forgotten.</p>
+      <img src="https://imagizer.imageshack.com/img923/3480/3MXzhc.png" alt="Cat Memories Image" style="width: 100%; max-width: 300px; display: block; margin: 1rem auto; border-radius: 10px;">
+    </div>
+
+    <div class="text-box">
+      <p>🎓 I have a Level 3 qualification in Feline Care, Behaviour and Welfare and a current Feline First Aid Diploma.</p>
+      <img src="https://imagizer.imageshack.com/img924/848/iUFsek.png" alt="Cat Care Qualification Image" style="width: 100%; max-width: 300px; display: block; margin: 1rem auto; border-radius: 10px;">
+    </div>
+
+    <div class="text-box">
+      <p>💖 At Clarence’s your cat will be treated as an individual. If they want handfeeding, no problem… want me to lay on the floor with them, I’m there… tummy tickles — my speciality. Whatever your pussycat needs to make their holiday a contented, memorable one.</p>
+      <img src="https://imagizer.imageshack.com/img924/3488/sFZynO.png" alt="Pampered Cat Image" style="width: 100%; max-width: 300px; display: block; margin: 1rem auto; border-radius: 10px;">
+    </div>
+
+    <div class="text-box">
+      <p>🔐 Their happiness and safety are my priority!</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+    <section id="day" class="page">
+      <h2>A Typical Day</h2>
+      <p>what happens in a typical day etc.</p>
+    </section>
+
+   <section id="accommodation" class="page">
+  <h2>🐾 Accommodation</h2>
+
+  <div class="accommodation-text">
+    <div class="text-box">
+      <p>🐱 Clarence’s Cattery was designed purely for the comfort, happiness and safety of
+      each guest by myself, purchased from Pedigree Pens and built by my husband, David AKA Uncle Dave. The cattery is completely UPVC which is absolutely fantastic as a high level of cleanliness can be kept at all times. The roof is made from a heat reflective material which helps to keep it cool in the summer. It is located in my garden, very close to my home so even when I am not in there (which is hardly ever) I can see in and they can see me.</p>
+    </div>
+
+    <div class="text-box">
+      <p>🐞 There are six suites, all built to the highest standards to comply with DEFRA regulations to obtain my FIVE star rating. We have the Ladybug, Bumble, Frog, Butterfly, Fish and Bird suites and each can accommodate two pussycats from the same household. For families of more than two, the suites can be opened up with the suite next door. Each suite has a bedroom which is fitted with a thermostatically controlled heater for the colder days, it is also insulated so stays lovely and warm in the winter. There is an iron bed for those pussycats who like to lounge and a pod for those who like to curl up, all furnished with fluffy blankets of course. Large litter trays, so plenty of space to move around when doing their business. Each suite also has an additional room which has a tower with scratching posts and hidey hole, a small chair for fluffy bottoms and a selection of toys. For those more adventurous climbers we have very high shelves too.</p>
+    </div>
+
+    <div class="text-box">
+      <p>🦜 The front of the suite is pawsafe mesh which leads to a safety corridor and looks out onto my garden. There are strictly no communal areas, pussycats from different households are not allowed to mix to ensure everyone is safe, healthy and happy. The mesh in the top of the safety corridor allows a constant flow of fresh air for our guests to breathe in. The garden is full of plant pots which attract butterflies and Bee’s for the pussycats to watch. We even get a cheeky squirrel called Steve who makes many an appearance to keep them entertained and a Heron who loves to land with his big feet on the roof!</p>
+    </div>
+
+    <div class="text-box">
+      <p>🎶 The tunes are also always playing in the corridor; Classic FM is a firm favourite, rather than Auntie’s singing !</p>
+    </div>
+  </div>
+
+  <div class="gallery">
+    <div class="photo-card">
+      <img src="https://i.ibb.co/v4vPr2Zt/IMG-20250804-WA0001.jpg" alt="Frog Suite" />
+    </div>
+    <div class="photo-card">
+      <img src="https://i.ibb.co/tTSFLB8Z/IMG-20250804-WA0002.jpg" alt="Fish Suite" />
+    </div>
+    <div class="photo-card">
+      <img src="https://i.ibb.co/TBvf8rH5/IMG-20250804-WA0003.jpg" alt="Bird Suite" />
+    </div>
+    <div class="photo-card">
+      <img src="https://i.ibb.co/JFn4jnnM/IMG-20250804-WA0004.jpg" alt="Butterfly Suite" />
+    </div>
+    <div class="photo-card">
+      <img src="https://i.ibb.co/zHhdFfLS/IMG-20250804-WA0005.jpg" alt="Ladybug Suite" />
+    </div>
+  </div>
+
+  <!-- Lightbox container -->
+  <div id="lightbox" class="lightbox" style="display:none;">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" src="" alt="Fullscreen image" />
+    <div class="lightbox-nav">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
+    </div>
+  </div>
+</section>
+
+   <section id="prices" class="page">
+  <h2>🐾 Prices</h2>
+
+  <div class="accommodation-text">
+
+    <div class="text-box">
+      <p>🐱 <strong>New Daily Rates (from 1st Jan 2026):</strong></p>
+      <ul>
+        <li>✨ <strong>£19</strong> per day for one pussycat</li>
+        <li>✨ <strong>£26</strong> per day for two pussycats sharing one suite</li>
+      </ul>
+    </div>
+
+    <div class="text-box">
+      <p>🧁 All prices include food, litter and treats. I provide Felix AGAIL, Sheba, Purina Gourmet and Whiskas wet. Royal Canin Sensible, Purina One and Iams dry.</p>
+      <p>🍗 A selection of treats are always available too — Webbox Licky Lix, meat sticks, Dreamies, Felix Goody Bags and freeze-dried. I also always have tinned Tuna, Fresh Tuna and Chicken and my famous Tuna Surprise to entice our fussier guests.</p>
+      <p>🍽️ If you would like your baby to stay on a particular diet though, you are of course welcome to bring their own food — just please ensure you provide enough for their entire stay.</p>
+    </div>
+
+    <div class="text-box">
+      <p>🧸 Prices also include me. Lots of playtime and as many snuggles as they would like. Time is taken to get to know each pussycat and their individual personality — what makes them happy, what makes them sad. They are unique and all need to be looked after in different ways.</p>
+      <p>📸 I promise you that each one is thoroughly loved and becomes part of my family. I also provide photo/video updates on my Facebook page or directly by WhatsApp so you can see what we get up to!</p>
+    </div>
+
+    <div class="text-box">
+      <p>📋 <strong>Other Requirements:</strong></p>
+      <p>
+        🐾All cats MUST be fully vaccinated against FHV – Feline Herpesvirus - yearly<br>
+       🐾 FCV – Feline Calicivirus - yearly<br>
+       🐾 FPV – Feline Panleucopaenia Virus – every three years or I am afraid they cannot stay. If your cat misses a booster then will need a restart.<br>
+       🐾 Restarts require two injections 3–4 weeks apart and both injections must be completely at least two weeks prior to arrival.<br><br>
+
+        All cats MUST be up-to-date with their flea and worm treatment before coming into Clarence’s Cattery. Details need to be provided.<br><br>
+
+        Bookings are secured with a non refundable deposit as we are holding the suite for you. Please have a read of our  <a href="https://onedrive.live.com/:w:/g/personal/B87A38D6D3E941DF/s!At9B6dPWOHq4i2IgU4AEP1ONolSu?e=ySzmIt" target="_blank">T&amp;C’s</a> before you book!
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+      <section id="gallery" class="page">
+      <h2>Gallery</h2>
+     <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="https://cdn.lightwidget.com/widgets/77501106ba7853679b5a537a513b2141.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+        </div>
+      </div>
+    </section>
+
+   <section id="video" class="page">
+  <h2>Video Tour</h2>
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+    <iframe 
+      src="https://www.youtube.com/embed/x5tIROV1c4k?si=vHt9sfpg4Hamlc-4" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      allowfullscreen
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    </iframe>
+  </div>
+</section>
+
+
+    <section id="contact" class="page">
+  <h2>Contact</h2>
+
+  <!-- Clean Post-it Style Contact Info with border -->
+  <div style="
+    background: #fff9c4; /* soft pastel yellow */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border: 3px dashed #f4d03f; /* dashed golden border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    color: #333;
+    max-width: 400px;
+  ">
+    <p style="margin: 0 0 10px;">📞 Mobile:  
+      <a href="tel:07917061609" style="color: #3b4a1f; text-decoration: none;">07917 061609</a>
+    </p>
+    <p style="margin: 0 0 10px;">💬 WhatsApp:  
+      <a href="https://wa.me/447917061609" target="_blank" style="color: #3b4a1f; text-decoration: none;">+44 7917 061609</a>
+    </p>
+    <p style="margin: 0;">📧 Email:  
+      <a href="mailto:clarencescattery@gmail.com" style="color: #3b4a1f; text-decoration: none;">clarencescattery@gmail.com</a>
+    </p>
+  </div>
+
+  <div id="successMessage" role="alert" aria-live="polite">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9 16.17l-3.88-3.88-1.41 1.41L9 19 20.3 7.71l-1.41-1.41z" />
+    </svg>
+    Thanks for your message! We'll get back to you soon.
+  </div>
+
+  <form id="contactForm" action="https://formspree.io/f/xblkkvpe" method="POST">
+    <label for="nameInput">Name:</label><br />
+    <input type="text" id="nameInput" name="name" required placeholder="Your name" /><br />
+
+    <label for="emailInput">Email:</label><br />
+    <input type="email" id="emailInput" name="email" required placeholder="you@example.com" /><br />
+
+    <label for="messageInput">Message:</label><br />
+    <textarea id="messageInput" name="message" rows="4" required placeholder="Your message"></textarea><br />
+
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
