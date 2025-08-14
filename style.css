@@ -455,3 +455,109 @@ body.home-page .page {
 img {
   border: none !important;
 }
+
+
+#name.page {
+  background-color: #d8f3dc; /* green background */
+  padding: 2rem;
+}
+
+.name-content {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Left image column */
+.left-image {
+  flex: 1;
+  display: flex;
+  align-items: center; /* middle of section */
+  justify-content: center;
+}
+
+/* Text column */
+.name-text {
+  flex: 2;
+}
+
+/* Right images column */
+.right-images {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* one at top, one at bottom */
+}
+
+.side-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Make it stack on mobile */
+@media (max-width: 768px) {
+  .name-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .right-images {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+
+
+.accommodation-content,
+.about-content,
+.name-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.side-image {
+  flex: 1 1 150px;
+  max-width: 180px;
+}
+
+.left-image {
+  order: 1; /* left side */
+}
+
+.right-images {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  order: 3;
+}
+
+.accommodation-text,
+.about-text,
+.name-text {
+  flex: 2 1 400px;
+  order: 2;
+}
+
+.text-box img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 800px) {
+  .accommodation-content,
+  .about-content,
+  .name-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .side-image,
+  .about-text,
+  .right-images {
+    max-width: 90%;
+    order: unset;
+  }
+}
